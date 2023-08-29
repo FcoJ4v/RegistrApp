@@ -1,2 +1,1 @@
-# RegistrApp
-proyecto transversal duoc
+# TransversalRegistrApp
