@@ -27,6 +27,36 @@ const routes: Routes = [
     path: 'recuperar',
     loadChildren: () => import('./pages/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   },
+  {
+    path: 'captura-qr',
+    loadChildren: () => import('./pages/captura-qr/captura-qr.module').then( m => m.CapturaQrPageModule)
+  },
+  {
+    path: 'asistencia',
+    loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
+  },
+  {
+    path: 'restablecer',
+    loadChildren: () => import('./pages/restablecer/restablecer.module').then( m => m.RestablecerPageModule)
+  },
+  {
+    path: 'registro-asistencia',
+    loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'recuperar-contrasena',
+    loadChildren: () => import('./pages/recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
+  },
+  {
+    path: ':num/asistencia',
+    loadChildren: () => import('./pages/asistencia/asistencia-routing.module').then( m => m.AsistenciaPageRoutingModule)
+  },
+  
+
 ];
 
 @NgModule({

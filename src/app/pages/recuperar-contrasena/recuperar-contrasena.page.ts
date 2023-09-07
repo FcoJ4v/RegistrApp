@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-recuperar',
-  templateUrl: './recuperar.page.html',
-  styleUrls: ['./recuperar.page.scss'],
+  selector: 'app-recuperar-contrasena',
+  templateUrl: './recuperar-contrasena.page.html',
+  styleUrls: ['./recuperar-contrasena.page.scss'],
 })
-export class RecuperarPage implements OnInit {
+export class RecuperarContrasenaPage implements OnInit {
 
   correito:string = "";
   constructor(private router:Router) { }
