@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-icon (click)="close()" style="font-size: 25px;" slot="end" name="close-outline"></ion-icon>
+    <ion-title>Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <h3>Docente: {{datoAsistencia.docente}}</h3>
+    <h3>Asignatura: {{datoAsistencia.asignatura}}</h3>
+    <h3>Lección: {{datoAsistencia.leccion}}</h3>
+    <h3>Seccion: {{datoAsistencia.seccion}}</h3>
+    <h3>Sala: {{datoAsistencia.sala}}</h3>
+    <h3>Hora: {{datoAsistencia.hora}}</h3>
+    <h3>Fecha: {{datoAsistencia.fecha}}</h3>
+  </ion-card>
+  
+</ion-content>

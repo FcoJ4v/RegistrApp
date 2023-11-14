@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import type { Animation } from '@ionic/angular';
 import { AnimationController, IonCard } from '@ionic/angular';
+import { StorageService } from 'src/app/services/storage.service';
 import { Menu } from 'src/app/models/menu';
 import { HelperService } from 'src/app/services/helper.service';
-import { RegistroAsistenciaPage } from '../registro-asistencia/registro-asistencia.page';
+import { AsistenciaPage } from '../asistencia/asistencia.page'; 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 
 @Component({
   selector: 'app-menu',
@@ -17,9 +20,13 @@ export class MenuPage implements OnInit {
 
   loading:boolean = true;
   arrayMenu:Menu[]=[];
+  usuario:any;
+  nombreUsuario:string = "";
   constructor(private router:Router,
               private helper:HelperService,
-              private animationCtrl: AnimationController
+              private animationCtrl: AnimationController,
+              private auth:AngularFireAuth,
+              private storage:StorageService
     ) { }
 
     cargaMenu(){
@@ -36,7 +43,7 @@ export class MenuPage implements OnInit {
           id:2,
           titulo:"Mi Asistencia",
           icono:"calendar-outline",
-          url:"/registro-asistencia"
+          url:"/asistencia"
         },
         {
           id:3,
@@ -54,6 +61,7 @@ export class MenuPage implements OnInit {
   ngOnInit() {
     this.cargaMenu();
     setTimeout(this.cargandoMenu, 2000);
+    this.cargarUsuario();
     
   }
 
@@ -106,4 +114,30 @@ export class MenuPage implements OnInit {
   }
 
   
+  async logOut(){
+    //
+
+    var corfirmar = await this.helper.showConfirm("Desea cerrar la sesión actual?","Confirmar","Cancelar")
+    if (corfirmar == true) {
+      await this.auth.signOut();
+      await this.router.navigateByUrl("login");
+    }
+  }
+
+  async cargarUsuario(){
+    console.log("USUARIO STORAGE",await this.storage.obtenerUsuario());
+    console.log("PROPIEDAD SERVICE STORAGE",this.storage.usuarioCorreo);
+  
+    var user = await this.auth.currentUser;
+  
+    this.usuario = (await this.storage.obtenerUsuario()).filter(e => e.email == user?.email);
+    this.nombreUsuario =  this.usuario[0].nombre;
+    
+  }
+
+  cargarInfo(){
+    this.router.navigateByUrl("info")
+  }
+  
+
 }

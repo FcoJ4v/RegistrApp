@@ -3,16 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>registro</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">registro</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
   <ng-container *ngIf="loading">
     <div class="boxSkeleton" *ngFor="let item of [1]">
       <ion-skeleton-text [animated]="true" class="skeleton"></ion-skeleton-text>
@@ -24,45 +20,65 @@
         <ion-list>
           
             <ion-item>
-              <ion-input label="Nombre:" placeholder="Armando"></ion-input>
+              <ion-input [(ngModel)]="nombre" label="Nombre:" placeholder="Armando"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input label="Apellido Paterno:" placeholder="Casas"></ion-input>
+              <ion-input [(ngModel)]="apellidoPaterno" label="Apellido Paterno:" placeholder="Casas"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input label="Apellido Materno:" placeholder="Rojas"></ion-input>
+              <ion-input [(ngModel)]="apellidoMaterno" label="Apellido Materno:" placeholder="Rojas"></ion-input>
             </ion-item>
 
             <ion-item>
-              <label>Rol:</label>
-              <ion-select>
-                <ion-select-option value="docente">Docente</ion-select-option>
-                <ion-select-option value="estudiante">Estudiante</ion-select-option>
-              </ion-select>
+              <ion-label>Contraseña:</ion-label>
+              <ion-input [(ngModel)]="contrasena" type="password"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input label="Contraseña" type="password" value="password"></ion-input>
+              <ion-label>Email:</ion-label>
+              <ion-input [(ngModel)]="email" type="text"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input label="Correo:" type="email" placeholder="correito@correo.com"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-input label="Telefono" type="tel" placeholder="22-7721231"></ion-input>
+              
+              <ion-input label="Telefono" type="tel" placeholder="22-7721231"[(ngModel)]="telefono" type="text"></ion-input>
             </ion-item>
           
+            <ion-list>
+              <ion-item>
+                <ion-label>Region:</ion-label>
+                <ion-select (ionChange)="cargarComuna()" placeholder="Seleccione" [(ngModel)]="regionSel">
+                  <ion-select-option [value]="r.id" *ngFor="let r of regiones">{{r.nombre}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            
+            <ion-list>
+              <ion-item>
+                <ion-label>Comuna:</ion-label>
+                <ion-select  placeholder="Seleccione" [(ngModel)]="comunaSel">
+                  <ion-select-option [value]="r.id" *ngFor="let r of comunas">{{r.nombre}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+
+
         </ion-list>
       </ion-card-content>
     </ion-card>
   </ng-container>
+
+  
   <ion-row>
     <ion-col>
-      <ion-button expand="full">Registrarse</ion-button>
+      <ion-button (click)="registro()" expand="full">Registrarse</ion-button>
     </ion-col>
   </ion-row>
+
+
+
+  
 
 </ion-content>

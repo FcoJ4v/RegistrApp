@@ -17,24 +17,33 @@
 </ng-container>
 
 <ng-container>
+  <div class="nombreUsuario">
+  <h1 *ngFor="let i of usuario">
+    Bienvenido {{nombreUsuario}}
+  </h1>
+</div>
   <div class="cardPerfil">
-    <ion-card>
-      <ion-title>
-        Bienvenido (Usuario)
-      </ion-title>
+    <ion-card *ngFor="let i of usuario">
       
-        <ion-input disabled="true" class="info" placeholder=" Armando">
-          Nombre: 
+      
+        <ion-input disabled="true" class="info" >
+          Nombre: {{i.nombre}}
         </ion-input>
 
-        <ion-input disabled="true" class="info"  placeholder=" Casas">
-          Apellido: 
+        <ion-input disabled="true" class="info">
+          Apellido Paterno:{{i.apellidoPaterno}} 
         </ion-input>
 
-        <ion-input disabled="true" class="info"  placeholder=" Estudiante">
-          Rol: 
+        <ion-input disabled="true" class="info">
+          Apellido Materno:{{i.apellidoMaterno}} 
         </ion-input>
-      
+
+        <ion-input disabled="true" class="info">
+          Comuna:{{i.comuna}} 
+        </ion-input>
+        <ion-input disabled="true" class="info">
+          Región:{{i.region}} 
+        </ion-input>
 
     </ion-card>
 

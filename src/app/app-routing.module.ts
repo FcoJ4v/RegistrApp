@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard'
+
+const redirectToLogin = () => redirectUnauthorizedTo(['/login']);
+
 
 const routes: Routes = [
   {
@@ -21,6 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'menu',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
   },
   {
@@ -29,32 +35,45 @@ const routes: Routes = [
   },
   {
     path: 'captura-qr',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/captura-qr/captura-qr.module').then( m => m.CapturaQrPageModule)
   },
   {
     path: 'asistencia',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
   },
   {
     path: 'restablecer',
     loadChildren: () => import('./pages/restablecer/restablecer.module').then( m => m.RestablecerPageModule)
   },
-  {
-    path: 'registro-asistencia',
-    loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
-  },
+
   {
     path: 'perfil',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
-  {
-    path: 'recuperar-contrasena',
-    loadChildren: () => import('./pages/recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
-  },
+
   {
     path: ':num/asistencia',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/asistencia/asistencia-routing.module').then( m => m.AsistenciaPageRoutingModule)
   },
+  {
+    path: 'lector-qr',
+    canActivate:[AngularFireAuthGuard],
+    loadChildren: () => import('./modals/lector-qr/lector-qr.module').then( m => m.LectorQrPageModule)
+  },
+  {
+    path: 'info',
+    loadChildren: () => import('./pages/info/info.module').then( m => m.InfoPageModule)
+  },
+
+
   
 
 ];

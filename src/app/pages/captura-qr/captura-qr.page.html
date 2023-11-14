@@ -3,16 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Capturar Código QR</ion-title>
+    <ion-title>Escaneo QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">capturaQr</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <ion-card>
     <ion-card-content>
@@ -24,7 +19,7 @@
 </ion-img>
       </ion-item>
       <ion-item class="btn-captura" >
-        <ion-button (click)="aceptarQr()" shape="round">Capturar.</ion-button> 
+        <ion-button (click)="scan()" shape="round">Capturar.</ion-button> 
       </ion-item>
             
     </ion-card-content>
